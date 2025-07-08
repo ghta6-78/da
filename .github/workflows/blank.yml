@@ -51,8 +51,10 @@ jobs:
         run: |
           echo ${{ matrix.chart }}
           if git diff --exit-code ${{ matrix.chart }}; then
+            echo XXXX
             echo "CHANGED=false" >> ${GITHUB_ENV}
           else
+            echo YYYY
             echo "CHANGED=true" >> ${GITHUB_ENV}
           fi
       - name: Push Helm chart on release
