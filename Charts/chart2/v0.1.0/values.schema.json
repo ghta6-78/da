@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A Helm chart for mke-operator",
+  "type": "object",
+  "required": [
+    "global"
+  ],
+  "properties": {
+    "global": {
+      "type": "object",
+      "description": "Global helm chart options",
+      "required": [
+        "allowAllAccessAnnotations"
+      ],
+      "properties": {
+        "allowAllAccessAnnotations": {
+           "type": "boolean",
+          "description": "Allow annotations to specify exemption to an account from all checks"
+        }
+      }
+    }
+  }
+}
