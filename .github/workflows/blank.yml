@@ -40,16 +40,6 @@ jobs:
       matrix:
         chart: ${{ fromJSON(needs.define-charts-matrix.outputs.charts) }}
     steps:
-      - name: Push Helm chart on release
-        uses: bsord/helm-push@v4.1.0
-        with:
-          useOCIRegistry: true
-          registry-url: oci://ghcr.io/ghta6-78
-          username: ${{ vars.PACKAGE_PUSHER_USERNAME }}
-          access-token: ${{ secrets.PACKAGE_PUSHER_PAT }}
-          force: true
-          chart-folder: ${{ matrix.chart }}
-
       - name: Report chart1
         run: |
           cat ${{ matrix.chart }}
