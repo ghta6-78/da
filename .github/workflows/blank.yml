@@ -49,6 +49,7 @@ jobs:
       - name: Check for differences
         id: changes
         run: |
+          echo ${{ matrix.chart }}
           if git diff --exit-code ${{ matrix.chart }}; then
             echo "CHANGED=false" >> ${GITHUB_ENV}
           else
