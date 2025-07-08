@@ -46,6 +46,12 @@ jobs:
           sparse-checkout: |
             .github
             ${{ matrix.chart }}
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            src:
+              - '${{ matrix.chart }}/**'
       - name: Push Helm chart on release
         uses: bsord/helm-push@v4.1.0
         with:
