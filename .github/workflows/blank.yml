@@ -51,7 +51,7 @@ jobs:
         with:
           filters: |
             src:
-              - '${{ matrix.chart }}/**'
+              - ${{ matrix.chart }}/**
       - name: Push Helm chart on release
         uses: bsord/helm-push@v4.1.0
         # run only if some file in 'matrix.chart' folder was changed
