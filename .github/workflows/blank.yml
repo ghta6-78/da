@@ -57,4 +57,4 @@ jobs:
           chart-folder: ${{ matrix.chart }}
       - name: Report chart1
         run: |
-          cat ${{ matrix.chart }}
+          ls ${{ matrix.chart }}
