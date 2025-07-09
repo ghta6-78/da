@@ -37,7 +37,7 @@ while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
           cur_changed_dirs_idx=$((cur_changed_dirs_idx + 1))
 	else
           ${ECHO} "adding $cur_helm_chart due to $cur_dir and BREAKING"
-          changed_charts=($cur_helm_chart)
+          changed_charts+=($cur_helm_chart)
           break 1
 	fi
       else
@@ -48,4 +48,6 @@ while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
   done
   cur_helm_chart_idx=$((cur_helm_chart_idx + 1))
 done
-echo '['| tr -d '\n' && for item in ${changed_charts[@]}; do echo "${item}, "; done | gsed 's/, $//'|tr -d '\n' && echo ']'
+x=$(echo '['| tr -d '\n' && for item in ${changed_charts[@]}; do echo "${item}, "; done && echo ']')
+y=$(echo $x| gsed 's/, ]/]/')
+echo $y
