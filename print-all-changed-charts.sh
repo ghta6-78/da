@@ -31,12 +31,13 @@ while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
       ${ECHO} "$cur_helm_chart' > $cur_dir, try next cur_dir"
       cur_changed_dirs_idx=$((cur_changed_dirs_idx + 1))
     else
-      if [[ "$cur_dir" == "$cur_helm_chart"* ]]; then
+      if [[ "$cur_dir" == "${cur_helm_chart}"* ]]; then
         ${ECHO} "$cur_dir starts with $cur_helm_chart"
-        if [[ "$cur_dir" == "${cur_helm_chart}chart/"*  ]]; then
+        if [[ "$cur_dir" == "${cur_helm_chart}/chart"*  ]]; then
+          ${ECHO} "however not adding $cur_helm_chart due to ${cur_helm_chart}/chart existing - which is what is ${cur_dir}"
           cur_changed_dirs_idx=$((cur_changed_dirs_idx + 1))
 	else
-          ${ECHO} "adding $cur_helm_chart due to $cur_dir and BREAKING"
+          ${ECHO} "so adding $cur_helm_chart due to $cur_dir and BREAKING - ${cur_helm_chart}/chart != ${cur_dir} and BREAKING"
           changed_charts+=($cur_helm_chart)
           break 1
 	fi
