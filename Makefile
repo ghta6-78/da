@@ -38,6 +38,10 @@ CONTAINER_TOOL ?= docker
 SHELL = /usr/bin/env bash -o pipefail
 .SHELLFLAGS = -ec
 
+.PHONY: all-changed-charts-paths
+all-changed-charts-paths:
+	@./print-all-changed-charts.sh
+
 .PHONY: all-charts-paths
 all-charts-paths:
 	@echo '['| tr -d '\n' && ${FIND} charts -name Chart.yaml -printf '"%h", ' | ${SED} 's/, $$//' && echo ']'

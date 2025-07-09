@@ -43,9 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            .github
-            ${{ matrix.chart }}
+          fetch-depth: 2
       - name: Check for differences
         id: changes
         run: |
