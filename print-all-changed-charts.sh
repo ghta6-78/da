@@ -41,7 +41,7 @@ while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
           break 1
 	fi
       else
-          ${ECHO} "$cur_helm_chart is not a prefix for $cur_dir and so it cannot be a prefix for ones that come later - BREAKING"
+          ${ECHO} "helm chart[$cur_helm_chart] is not a prefix for changed directory[$cur_dir] and so it cannot be a prefix for other changed dirs that come later in the sorted array - ending the search without adding this helm chart"
           break 1
       fi
     fi
