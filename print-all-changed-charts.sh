@@ -21,7 +21,7 @@ ${ECHO} "tot_helm_chart: $tot_helm_chart tot_changed_dirs: $tot_changed_dirs"
 
 while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
   cur_helm_chart=${sorted_charts[$cur_helm_chart_idx]}
-  ${ECHO} "TESTING: cur_helm_chart_idx: $cur_helm_chart_idx, cur_helm_chart: $cur_helm_chart"
+  ${ECHO} -e "\nTESTING helm chart path: $cur_helm_chart, cur_helm_chart_idx: $cur_helm_chart_idx"
   cur_changed_dirs_idx=0
   while [[ $cur_changed_dirs_idx -lt $tot_changed_dirs ]]; do
     cur_dir=${sorted_changed_dirs[$cur_changed_dirs_idx]}
@@ -33,10 +33,10 @@ while [[ $cur_helm_chart_idx -lt $tot_helm_chart ]]; do
       if [[ "$cur_dir" == "${cur_helm_chart}"* ]]; then
         ${ECHO} "changed directory $cur_dir starts with a helm chart directory [$cur_helm_chart]"
         if [[ "$cur_dir" == "${cur_helm_chart}/chart"*  ]]; then
-          ${ECHO} "however not adding the helm chart [$cur_helm_chart] because its subchart in [${cur_helm_chart}/chart] exists and the changed directory[${cur_dir}] lies under that path"
+          ${ECHO} "however not adding the helm chart [$cur_helm_chart] because its subchart in [${cur_helm_chart}/chart] exists and the changed directory[${cur_dir}] lies under subchart's path"
           cur_changed_dirs_idx=$((cur_changed_dirs_idx + 1))
 	else
-          ${ECHO} "so adding $cur_helm_chart due to $cur_dir and BREAKING - ${cur_helm_chart}/chart != ${cur_dir} and BREAKING"
+          ${ECHO} "so adding helm chart [$cur_helm_chart] because its subchart in [${cur_helm_chart}/chart], even if it were to exist, is not the one to which the current changed dir [$cur_dir] would belong"
           changed_charts+=($cur_helm_chart)
           break 1
 	fi
