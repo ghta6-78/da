@@ -16,7 +16,6 @@ tot_helm_chart=${#sorted_charts[@]}
 tot_changed_dirs=${#sorted_changed_dirs[@]}
 cur_helm_chart_idx=0
 cur_changed_dirs_idx=0
-${ECHO} "${sorted_charts}"
 
 ${ECHO} "tot_helm_chart: $tot_helm_chart tot_changed_dirs: $tot_changed_dirs"
 
